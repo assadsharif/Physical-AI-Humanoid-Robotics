@@ -11,32 +11,32 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'Embodied Intelligence',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Learn how physical embodiment shapes intelligent behavior. From
+        foundations to advanced humanoid control systems.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Modern Simulation Platforms',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Master ROS2, Gazebo, Unity, and NVIDIA Isaac for high-fidelity
+        humanoid simulation and sim-to-real transfer.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Vision-Language-Action',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Explore cutting-edge VLA systems that enable generalist humanoid
+        policies through foundation models.
       </>
     ),
   },
