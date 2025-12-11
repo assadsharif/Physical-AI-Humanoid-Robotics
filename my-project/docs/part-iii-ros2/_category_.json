@@ -1,0 +1,7 @@
+{
+  "label": "Part III: ROS2 for Humanoid Systems",
+  "position": 3,
+  "collapsible": true,
+  "collapsed": true,
+  "description": "ROS2 architecture, lifecycle management, QoS, and reliability patterns"
+}

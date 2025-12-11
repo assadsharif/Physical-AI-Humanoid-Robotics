@@ -1,0 +1,7 @@
+{
+  "label": "Part IV: Simulation Platforms",
+  "position": 4,
+  "collapsible": true,
+  "collapsed": true,
+  "description": "Gazebo, Unity, NVIDIA Isaac, sim-to-real transfer, and platform selection"
+}
