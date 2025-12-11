@@ -15,14 +15,16 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://physical-ai-robotics.example.com',
+  url: 'https://assadsharif.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/Physical-AI-Humanoid-Robotics/',
 
   // GitHub pages deployment config.
-  organizationName: 'physical-ai-robotics', // GitHub org/user name
-  projectName: 'textbook', // Repository name
+  organizationName: 'assadsharif', // GitHub org/user name
+  projectName: 'Physical-AI-Humanoid-Robotics', // Repository name
+  trailingSlash: false,
+  deploymentBranch: 'gh-pages',
 
   onBrokenLinks: 'throw',
 
@@ -99,7 +101,7 @@ const config: Config = {
           position: 'left',
         },
         {
-          href: 'https://github.com/physical-ai-robotics/textbook',
+          href: 'https://github.com/assadsharif/Physical-AI-Humanoid-Robotics',
           label: 'GitHub',
           position: 'right',
         },
@@ -151,7 +153,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/physical-ai-robotics/textbook',
+              href: 'https://github.com/assadsharif/Physical-AI-Humanoid-Robotics',
             },
           ],
         },
