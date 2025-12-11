@@ -1,0 +1,7 @@
+{
+  "label": "Part V: Advanced Humanoid Control",
+  "position": 5,
+  "collapsible": true,
+  "collapsed": true,
+  "description": "Bipedal locomotion, whole-body control, manipulation, and perception integration"
+}

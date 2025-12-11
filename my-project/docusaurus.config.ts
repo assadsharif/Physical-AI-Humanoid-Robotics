@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'Physical AI & Humanoid Robotics',
+  tagline: 'From Foundations to Advanced Humanoid Control',
   favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -15,15 +15,14 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://physical-ai-robotics.example.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'physical-ai-robotics', // GitHub org/user name
+  projectName: 'textbook', // Repository name
 
   onBrokenLinks: 'throw',
 
@@ -72,24 +71,35 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'My Site',
+      title: 'Physical AI & Humanoid Robotics',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Physical AI Textbook Logo',
         src: 'img/logo.svg',
       },
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'textbookSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Textbook',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          to: '/docs/glossary',
+          label: 'Glossary',
+          position: 'left',
+        },
+        {
+          to: '/about',
+          label: 'About',
+          position: 'left',
+        },
+        {
+          href: 'https://github.com/physical-ai-robotics/textbook',
           label: 'GitHub',
           position: 'right',
         },
@@ -99,46 +109,54 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Textbook',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Part I: Foundations',
+              to: '/docs/part-i-foundations/ch01-embodied-intelligence',
+            },
+            {
+              label: 'Part II: Humanoid Fundamentals',
+              to: '/docs/part-ii-humanoid-fundamentals/ch05-humanoid-kinematics',
+            },
+            {
+              label: 'Part III: ROS2',
+              to: '/docs/part-iii-ros2/ch09-ros2-architecture',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'More Content',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Part IV: Simulation',
+              to: '/docs/part-iv-simulation/ch14-gazebo-harmonic',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'Part V: Control',
+              to: '/docs/part-v-control/ch19-bipedal-locomotion',
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'Part VI: VLA Systems',
+              to: '/docs/part-vi-vla/ch24-vla-architecture',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'Resources',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'Glossary',
+              to: '/docs/glossary',
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/physical-ai-robotics/textbook',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics Textbook. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
