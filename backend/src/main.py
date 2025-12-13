@@ -5,7 +5,10 @@ from fastapi.middleware.cors import CORSMiddleware
 import logging
 
 from .core.config import get_settings
+from .core.database import db_config
+from .core.security import auth_service_health_check
 from .api.routes import chat_router, search_router, health_router
+from .api.routes.profile import router as profile_router
 
 # Configure logging
 logging.basicConfig(
@@ -33,7 +36,7 @@ def create_app() -> FastAPI:
         CORSMiddleware,
         allow_origins=origins,
         allow_credentials=True,
-        allow_methods=["GET", "POST", "OPTIONS"],
+        allow_methods=["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
         allow_headers=["*"],
     )
 
@@ -41,6 +44,7 @@ def create_app() -> FastAPI:
     app.include_router(chat_router)
     app.include_router(search_router)
     app.include_router(health_router)
+    app.include_router(profile_router)
 
     @app.on_event("startup")
     async def startup_event():
@@ -48,9 +52,20 @@ def create_app() -> FastAPI:
         logger.info(f"Environment: {settings.app_env}")
         logger.info(f"Debug mode: {settings.debug}")
 
+        # Check database connection
+        db_healthy = await db_config.health_check()
+        logger.info(f"Database: {'connected' if db_healthy else 'disconnected'}")
+
+        # Check auth service
+        auth_status = await auth_service_health_check()
+        logger.info(f"Auth service: {auth_status['status']}")
+
     @app.on_event("shutdown")
     async def shutdown_event():
         logger.info("Shutting down RAG Chatbot API...")
+
+        # Close database connections
+        await db_config.close()
 
     @app.get("/")
     async def root():

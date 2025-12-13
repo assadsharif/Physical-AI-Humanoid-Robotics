@@ -134,3 +134,74 @@ class HealthResponse(BaseModel):
     timestamp: datetime = Field(
         default_factory=datetime.utcnow, description="Health check timestamp"
     )
+
+
+class ExperienceLevel(str, Enum):
+    """User experience levels."""
+    BEGINNER = "beginner"
+    INTERMEDIATE = "intermediate"
+    ADVANCED = "advanced"
+
+
+class ProfilePreferences(BaseModel):
+    """User preferences stored as JSON."""
+
+    theme: Optional[str] = Field(None, description="UI theme preference")
+    notifications_enabled: bool = Field(True, description="Enable notifications")
+    default_chapter: Optional[str] = Field(None, description="Default chapter to open")
+    language: str = Field("en", description="Preferred language")
+
+    class Config:
+        extra = "allow"  # Allow additional fields
+
+
+class ProfileCreate(BaseModel):
+    """Request schema for creating a profile."""
+
+    experience_level: ExperienceLevel = Field(
+        ExperienceLevel.BEGINNER,
+        description="User's experience level"
+    )
+    preferences: Optional[ProfilePreferences] = Field(
+        None,
+        description="User preferences"
+    )
+
+
+class ProfileUpdate(BaseModel):
+    """Request schema for updating a profile."""
+
+    experience_level: Optional[ExperienceLevel] = Field(
+        None,
+        description="Updated experience level"
+    )
+    preferences: Optional[ProfilePreferences] = Field(
+        None,
+        description="Updated preferences"
+    )
+
+
+class ProfileResponse(BaseModel):
+    """Response schema for profile endpoints."""
+
+    id: str = Field(..., description="Profile ID")
+    user_id: str = Field(..., description="User ID")
+    experience_level: ExperienceLevel = Field(..., description="Experience level")
+    preferences: dict = Field(default_factory=dict, description="User preferences")
+    created_at: datetime = Field(..., description="Profile creation timestamp")
+    updated_at: datetime = Field(..., description="Last update timestamp")
+
+    class Config:
+        from_attributes = True  # Enable ORM mode
+
+
+class UserResponse(BaseModel):
+    """Response schema for user data."""
+
+    id: str = Field(..., description="User ID")
+    email: str = Field(..., description="User email")
+    name: Optional[str] = Field(None, description="User display name")
+    profile: Optional[ProfileResponse] = Field(None, description="User profile")
+
+    class Config:
+        from_attributes = True

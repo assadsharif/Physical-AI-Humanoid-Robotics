@@ -12,6 +12,10 @@ class Settings(BaseSettings):
     debug: bool = False
     cors_origins: str = "http://localhost:3000"
 
+    # Auth Service
+    auth_service_url: str = "http://localhost:3001"
+    auth_service_timeout: float = 2.0
+
     # OpenAI
     openai_api_key: str
     embedding_model: str = "text-embedding-ada-002"

@@ -7,9 +7,15 @@ from sqlalchemy import pool
 from alembic import context
 import os
 from dotenv import load_dotenv
+import sys
+from pathlib import Path
 
 # Load environment variables from .env file
 load_dotenv()
+
+# Add backend/src to Python path for imports
+backend_path = Path(__file__).parent.parent / "src"
+sys.path.insert(0, str(backend_path))
 
 # This is the Alembic Config object
 config = context.config
@@ -19,12 +25,23 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 # Get database URL from environment
-sqlalchemy_url = os.getenv('DATABASE_URL', 'postgresql://localhost/auth_dev')
-config.set_main_option('sqlalchemy.url', sqlalchemy_url)
+database_url = os.getenv('DATABASE_URL', 'postgresql://localhost/auth_dev')
+
+# For Alembic (synchronous migrations), convert postgresql+asyncpg:// to postgresql://
+# because Alembic runs synchronously and needs the synchronous driver (psycopg or psycopg2)
+if database_url.startswith('postgresql+asyncpg://'):
+    database_url = database_url.replace('postgresql+asyncpg://', 'postgresql://', 1)
+
+config.set_main_option('sqlalchemy.url', database_url)
 
 # Model's MetaData object for 'autogenerate' support
-# target_metadata = None
-target_metadata = None
+try:
+    from models.database import Base
+    target_metadata = Base.metadata
+except ImportError:
+    # If imports fail (e.g., missing dependencies), use None
+    # Migrations will still work, just without autogenerate
+    target_metadata = None
 
 
 def run_migrations_offline() -> None:
