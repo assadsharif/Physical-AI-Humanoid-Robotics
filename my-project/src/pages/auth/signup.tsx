@@ -1,6 +1,5 @@
 import type {ReactNode} from 'react';
 import {useState} from 'react';
-import {useHistory} from '@docusaurus/router';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
 import styles from './auth.module.css';
@@ -13,7 +12,6 @@ export default function SignUp(): ReactNode {
   const [experience, setExperience] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,7 +32,7 @@ export default function SignUp(): ReactNode {
     setLoading(true);
 
     try {
-      const authServiceUrl = process.env.REACT_APP_AUTH_SERVICE_URL || 'http://localhost:3001';
+      const authServiceUrl = 'http://localhost:3001';
 
       const response = await fetch(`${authServiceUrl}/api/auth/sign-up`, {
         method: 'POST',
