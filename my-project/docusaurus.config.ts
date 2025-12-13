@@ -4,6 +4,10 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+// Use different baseUrl for development vs production
+const isDev = process.env.NODE_ENV === 'development';
+const baseUrl = isDev ? '/' : '/Physical-AI-Humanoid-Robotics/';
+
 const config: Config = {
   title: 'Physical AI & Humanoid Robotics',
   tagline: 'From Foundations to Advanced Humanoid Control',
@@ -18,7 +22,7 @@ const config: Config = {
   url: 'https://assadsharif.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/Physical-AI-Humanoid-Robotics/',
+  baseUrl: baseUrl,
 
   // GitHub pages deployment config.
   organizationName: 'assadsharif', // GitHub org/user name
