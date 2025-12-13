@@ -109,6 +109,18 @@ const config: Config = {
           label: 'GitHub',
           position: 'right',
         },
+        {
+          to: '/auth/signin',
+          label: 'Sign In',
+          position: 'right',
+          className: 'navbar-signin-btn',
+        },
+        {
+          to: '/auth/signup',
+          label: 'Sign Up',
+          position: 'right',
+          className: 'navbar-signup-btn',
+        },
       ],
     },
     footer: {

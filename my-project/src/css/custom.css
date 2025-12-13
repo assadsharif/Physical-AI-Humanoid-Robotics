@@ -28,3 +28,56 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Authentication navbar buttons */
+.navbar-signin-btn,
+.navbar-signup-btn {
+  font-weight: 600;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  margin-left: 8px;
+}
+
+.navbar-signin-btn {
+  color: var(--ifm-color-primary);
+  border: 2px solid var(--ifm-color-primary);
+  padding: 6px 12px;
+}
+
+.navbar-signin-btn:hover {
+  background-color: transparent;
+  color: var(--ifm-color-primary-dark);
+  border-color: var(--ifm-color-primary-dark);
+}
+
+[data-theme='dark'] .navbar-signin-btn {
+  color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .navbar-signin-btn:hover {
+  color: var(--ifm-color-primary-light);
+  border-color: var(--ifm-color-primary-light);
+}
+
+.navbar-signup-btn {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  padding: 8px 16px;
+  border: none;
+}
+
+.navbar-signup-btn:hover {
+  background-color: var(--ifm-color-primary-dark);
+  color: white;
+}
+
+[data-theme='dark'] .navbar-signup-btn {
+  background-color: var(--ifm-color-primary);
+  color: white;
+}
+
+[data-theme='dark'] .navbar-signup-btn:hover {
+  background-color: var(--ifm-color-primary-light);
+  color: white;
+}
