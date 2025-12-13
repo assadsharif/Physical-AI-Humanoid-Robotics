@@ -47,13 +47,6 @@ export default function SignIn(): ReactNode {
               </a>
             </p>
           </div>
-
-          <div className={styles.comingSoon}>
-            <p>
-              <strong>Note:</strong> Authentication is currently under development.
-              The auth service will be integrated in the next phase.
-            </p>
-          </div>
         </div>
       </div>
     </Layout>
