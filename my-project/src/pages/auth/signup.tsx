@@ -32,7 +32,8 @@ export default function SignUp(): ReactNode {
     setLoading(true);
 
     try {
-      const authServiceUrl = 'http://localhost:3001';
+      // Use environment variable or default to localhost for development
+      const authServiceUrl = process.env.REACT_APP_AUTH_SERVICE_URL || 'http://localhost:3001';
 
       const response = await fetch(`${authServiceUrl}/api/auth/sign-up`, {
         method: 'POST',

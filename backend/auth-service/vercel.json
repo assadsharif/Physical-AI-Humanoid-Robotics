@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "buildCommand": "npm install && npm run build",
+  "outputDirectory": "dist",
+  "env": {
+    "DATABASE_URL": "@auth_database_url",
+    "JWT_SECRET": "@auth_jwt_secret",
+    "JWT_ALGORITHM": "RS256",
+    "JWT_EXPIRATION": "86400",
+    "PORT": "3001",
+    "NODE_ENV": "production",
+    "CORS_ORIGINS": "@auth_cors_origins",
+    "LOG_LEVEL": "info"
+  },
+  "functions": {
+    "src/main.ts": {
+      "runtime": "nodejs20.x",
+      "memory": 1024,
+      "maxDuration": 60
+    }
+  }
+}
