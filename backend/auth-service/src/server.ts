@@ -1,8 +1,8 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
-import authRoutes from './routes/auth.js';
-import healthRoutes from './routes/health.js';
+import { auth } from './auth.js';
+import { toNodeHandler } from 'better-auth/node';
 import { errorHandler } from './middleware/errorHandler.js';
 import logger from './utils/logger.js';
 
@@ -20,7 +20,7 @@ const CORS_ORIGINS = (process.env.CORS_ORIGINS || 'http://localhost:3000,http://
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ limit: '10kb', extended: true }));
 
-// Middleware: CORS
+// Middleware: CORS - Must be before auth routes
 const corsOptions = {
   origin: CORS_ORIGINS,
   credentials: true,
@@ -31,7 +31,7 @@ app.use(cors(corsOptions));
 
 // Middleware: Request logging
 app.use((req: Request, res: Response, next: NextFunction) => {
-  logger.info(`${req.method} ${req.path}`);
+  logger.debug(`${req.method} ${req.path}`);
   next();
 });
 
@@ -58,9 +58,18 @@ const loginLimiter = rateLimit({
 app.use('/api/auth/sign-up', signupLimiter);
 app.use('/api/auth/sign-in', loginLimiter);
 
-// Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/health', healthRoutes);
+// Mount better-auth handler - MUST be before custom routes
+const authHandler = toNodeHandler(auth);
+app.use('/api/auth', authHandler);
+
+// Health check endpoint
+app.get('/api/health', (req: Request, res: Response) => {
+  res.status(200).json({
+    status: 'healthy',
+    database: 'connected',
+    timestamp: new Date().toISOString(),
+  });
+});
 
 // Root endpoint
 app.get('/', (req: Request, res: Response) => {
